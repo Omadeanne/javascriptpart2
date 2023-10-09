@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function downloadVideoCallback(url, callback) {
+        fetch(url)
+          .then(response => response.blob())
+          .then(blob => {
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = "video.mp4";
+            a.click();
+            URL.revokeObjectURL(url);
+            callback(null);
+          })
+          .catch(error => callback(error));
+      }
+      
+      downloadVideoCallback("https://shutterstock.7eer.net/c/38919/1636625/1305?u=https%3A%2F%2Fwww.shutterstock.com%2Fvideo%2Fclip-1090933785&sharedid=www.videezy.com&trafcat=T4&trafsrc=Direct&subId1=search-top&subId2=mp4%20videos&adtype=video&adplacement=SRP&subId3=NG-197.210.52.139", (error) => {
+        if (error) {
+          console.error("Error downloading video: ", error);
+        } else {
+          console.log("Video downloaded successfully.");
+        }
+      });
+
+
+      // promise
+      function downloadVideo(url) {
+      return new Promise((resolve, reject) => {
+        fetch(url)
+          .then(response => {
+            if (!response.ok) {
+              throw new Error(`Network response was not ok: ${response.statusText}`);
+            }
+            return response.blob();
+          })
+          .then(blob => {
+            const urlObj = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = urlObj;
+            a.download = "video.mp4";
+            a.click();
+            URL.revokeObjectURL(urlObj);
+            console.log("Video downloaded successfully.");
+            resolve();
+          })
+          .catch(error => {
+            console.error("Error downloading video: ", error);
+            reject(error);
+          });
+      });
+    }
+
+    downloadVideo("https://shutterstock.7eer.net/c/38919/1636625/1305?u=https%3A%2F%2Fwww.shutterstock.com%2Fvideo%2Fclip-1090933785&sharedid=www.videezy.com&trafcat=T4&trafsrc=Direct&subId1=search-top&subId2=mp4%20videos&adtype=video&adplacement=SRP&subId3=NG-197.210.52.139")
+      .then(() => {
+        // Success handling if needed
+      })
+      .catch(error => {
+        // Error handling if needed
+      });
+
+
+
+      
+      // async and await
+      async function downloadVideo(url) {
+      try {
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error(`Network response was not ok: ${response.statusText}`);
+        }
+
+        const blob = await response.blob();
+        const urlObj = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = urlObj;
+        a.download = "video.mp4";
+        a.click();
+        URL.revokeObjectURL(urlObj);
+        console.log("Video downloaded successfully.");
+      } catch (error) {
+        console.error("Error downloading video: ", error);
+      }
+    }
+    
+    downloadVideo("https://shutterstock.7eer.net/c/38919/1636625/1305?u=https%3A%2F%2Fwww.shutterstock.com%2Fvideo%2Fclip-1090933785&sharedid=www.videezy.com&trafcat=T4&trafsrc=Direct&subId1=search-top&subId2=mp4%20videos&adtype=video&adplacement=SRP&subId3=NG-197.210.52.139");
+  </script>
+</body>
