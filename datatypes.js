@@ -217,4 +217,22 @@ console.log(firstChar); // "N
 
 // functions are
 //actually objects in JavaScript
-// Declarations vs. Expressions
+// Declarations  begins with the function keyword and includes the name
+// of the function immediately following it
+function add(num1, num2) {
+    return num1 + num2;
+   }
+
+
+
+// Expressions doesn’t require a name
+// after function. These functions are considered anonymous because the
+// function object itself has no name
+var add = function(num1, num2) {
+    return num1 + num2;
+   };
+
+   var result = add(5, 5);
+function add(num1, num2) {
+ return num1 + num2;
+}
