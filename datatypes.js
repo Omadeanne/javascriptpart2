@@ -1,9 +1,11 @@
  /* primitive datatypes store data directly in the variable
  string 
  number
- null
- undefined value taken by a variable thats not yet defined
  boolean
+ null empty value
+ undefined value taken by a variable thats not yet defined; eg let children
+ symbol 
+ BigInt
 
  
 There are a couple of ways to create,
@@ -195,15 +197,15 @@ console.log(reflect instanceof Object); // true
 Array.isArray() //is the best way to identify arrays
 
 // there are three primitive wrapper types (String, Number, and Boolean)
-var name = "Nicholas";
-var firstChar = name.charAt(0);
+let name = "Nicholas";
+// let firstChar = name.charAt(0);
 console.log(firstChar); // "N"
 
 //This is what happens behind the scenes:
 // what the JavaScript engine does
-var name = "Nicholas";
-var temp = new String(name);
-var firstChar = temp.charAt(0);
+let name = "Nicholas";
+let temp = new String(name);
+let firstChar = temp.charAt(0);
 temp = null;
 console.log(firstChar); // "N
 
@@ -228,11 +230,11 @@ function add(num1, num2) {
 // Expressions doesn’t require a name
 // after function. These functions are considered anonymous because the
 // function object itself has no name
-var add = function(num1, num2) {
+let add = function(num1, num2) {
     return num1 + num2;
    };
 
-   var result = add(5, 5);
+   let result = add(5, 5);
 function add(num1, num2) {
  return num1 + num2;
 }
