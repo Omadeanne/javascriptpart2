@@ -80,7 +80,7 @@ Primitive literals includes
 
 
  */
-
+/*
 
 // primitive methods
 var name = "Nicholas";
